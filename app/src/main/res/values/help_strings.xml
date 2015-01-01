@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="title_activity_help">Help</string>
+    <string name="title_activity_topic">Help Topic</string>
+
+    <string name="no_help_available">
+      There is no help available at this time.
+    </string>
+    <string name="about_help_topics">
+      Help is available for each section of this app.
+    </string>
+
+    <string name="help_page_intro">For information on the different parts of this app, touch one of the images below.</string>
+    <string name="help_page_intro_html">
+        <![CDATA[
+            <p></p>
+            <p align="center"><font color="#ff3333"><b>Roman Numeral Converter</b></font></p>
+            <p></p>
+            <p>For information on the different parts of this app, touch one of the images below:</p>
+        ]]>
+    </string>
+
+    <string name="help_title_section1">Numerals</string>
+    <string name="help_text_section1">
+        Roman Numerals can be used to represent any Arabic Numeral between 1 and 3999. Find out more here...
+    </string>
+    <string name="topic_section1">
+        <![CDATA[
+            <p></p>
+            <p>Roman Numerals can be used to represent any Arabic Numeral between 1 and 3999, are
+                generally are written in descending order from left to right, and are added sequentially.</p>
+            <p>For example MMVI (2006) is interpreted as 1000 + 1000 + 5 + 1</p>
+            <p></p>
+            <p>Certain combinations employ a subtractive principle which specifics that where a symbol
+                of smaller value preceded a symbol of larger value, the smaller value is subtracted from
+                the larger value, and the result is added to the total. </p>
+            <p>For example, in MCMXLIV (1944) the symbols C,X and I each precede a symbol of higher value,
+                and the results is interpreted as 1000 plus (1000 minus 100) plus (50 minus 10) plus (5 minus 1)</p>
+            <p></p>
+            <p>In addition to the additive and subtractive principles, there are also rules covering repetition of various symbols. </p>
+            <p>For example, the Symbols I, X, C and M can be repeated up to three times in succession for addition, but no more. </p>
+            <p>D, L and V can never be repeated.</p>
+            <p></p>
+            <p>For subtraction, symbols cannot be repeated.</p>
+            <p></p>
+            <p>And to further complicate the representation:#x13&#x10;
+                I can be subtracted from V and X only;#x13&#x10;
+                X can be subtracted from L and C only;#x13&#x10;
+                C can be subtracted from D and M only;#x13&#x10;
+                V, L and D can never be subtracted</p>
+            <p></p>
+            <p><b>Return to the previous screen by touching the Back button.</b></p>
+        ]]>
+    </string>
+
+    <string name="help_title_section2">Manual Mode</string>
+    <string name="help_text_section2">
+     Learn how to operate the application in manual conversion mode.
+    </string>
+    <string name="topic_section2">
+    <![CDATA[
+      <p>
+Enter either a Roman or Arabic Numeral in the editable fields and the conversion takes place! If successful you will see “DONE” in the status field.  If problems, you will see “FAILED” in the status field with a failure reason underneath.
+Tap the status text “READY/DONE/FAILED” to reset both editable fields
+Long press the status text to switch to AUTO-COUNT mode
+      </p>
+      <p><b>Return to the previous screen by touching the Back button.</b>
+        </p>
+       ]]>
+    </string>
+
+
+    <string name="help_title_section3">Auto Mode</string>
+    <string name="help_text_section3">
+        Learn how to take advantage of automated counting to see how Arabic numerals convert to Roman.
+    </string>
+    <string name="topic_section3">
+    <![CDATA[
+      <p>
+Let the app take the strain! Increment or decrement a counter with the buttons – see the equivalent Roman and Arabic Numeral representations immediately.   Long press the Increment/Decrement buttons to increase step size to 10 rather than default 1.
+Hit the “COUNT” button and watch the counter automatically tick over – long press to switch direction between counting upwards and counting downwards.
+Tap the status text “AUTO” to reset the counter
+Long press the status text to switch back to MANUAL mode
+      </p>
+      <p><b>Return to the previous screen by touching the Back button.</b>
+        </p>
+       ]]>
+    </string>
+
+    <string name="help_title_section4">About</string>
+    <string name="help_text_section4">
+      Details about this Roman Numeral Converter application.
+    </string>
+    <string name="topic_section4">
+    <![CDATA[
+      <p>
+Roman Numeral Converter     v1.1     December 2014
+Expanded from a programming exercise – not exhaustive tested on all devices!
+Email feedback/ideas/comments to shauncotter00@gmail.com
+      </p>
+      <p><b>Return to the previous screen by touching the Back button.</b>
+        </p>
+       ]]>
+    </string>
+
+</resources>
