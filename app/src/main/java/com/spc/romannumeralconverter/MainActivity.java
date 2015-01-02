@@ -227,7 +227,6 @@ public class MainActivity extends ActionBarActivity {
 
         // Commit the edits!  Actually use 'apply' to request async write
         editor.apply();
-        Log.v(TAG, "... onSTOP - edits applied");
     }
 
 

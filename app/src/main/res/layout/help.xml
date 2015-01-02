@@ -13,65 +13,61 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 -->
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@color/light_background"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/help_page_intro"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/help_page_intro" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:background="#FF909090" />
 
     <ScrollView
         android:id="@+id/ScrollView1"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="wrap_content"
+        android:background="@color/light_background">
 
-        <LinearLayout
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:padding="6dip">
-
-            <TextView
-                android:id="@+id/help_page_intro"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="2dip"
-                android:text="@string/help_page_intro" />
-
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="2dip"
-                android:background="#FF909090" />
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:orientation="horizontal"
-                android:padding="4dip">
+                android:orientation="horizontal">
 
-                <Button
+                <ImageButton
                     android:id="@+id/help_button1"
-                    style="@style/HelpButton.Dark"
-                    android:layout_width="180dip"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:drawableBottom="@drawable/help_image1"
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    android:contentDescription="@string/help_title_section1"
                     android:onClick="onClickHelp"
-                    android:text="@string/help_title_section1" />
+                    android:scaleType="centerInside"
+                    android:src="@drawable/rn_flying" />
 
                 <TextView
+                    android:id="@+id/help_text1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:padding="8dip"
+                    android:layout_gravity="center_vertical"
                     android:text="@string/help_text_section1" />
             </LinearLayout>
 
             <View
                 android:layout_width="fill_parent"
-                android:layout_height="2dip"
+                android:layout_height="2dp"
                 android:background="#FF909090" />
 
             <LinearLayout
@@ -80,27 +76,26 @@
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
-                <Button
+                <ImageButton
                     android:id="@+id/help_button2"
-                    style="@style/HelpButton.Dark"
-                    android:layout_width="180dip"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:drawableBottom="@drawable/help_image2"
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    android:contentDescription="@string/help_title_section2"
                     android:onClick="onClickHelp"
-                    android:text="@string/help_title_section2" />
+                    android:scaleType="centerInside"
+                    android:src="@drawable/manual_work" />
 
                 <TextView
+                    android:id="@+id/help_text2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:padding="8dip"
+                    android:layout_gravity="center_vertical"
                     android:text="@string/help_text_section2" />
             </LinearLayout>
 
             <View
                 android:layout_width="fill_parent"
-                android:layout_height="2dip"
+                android:layout_height="2dp"
                 android:background="#FF909090" />
 
             <LinearLayout
@@ -109,27 +104,26 @@
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
-                <Button
+                <ImageButton
                     android:id="@+id/help_button3"
-                    style="@style/HelpButton.Dark"
-                    android:layout_width="180dip"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:drawableBottom="@drawable/help_image3"
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    android:contentDescription="@string/help_title_section3"
                     android:onClick="onClickHelp"
-                    android:text="@string/help_title_section3" />
+                    android:scaleType="centerInside"
+                    android:src="@drawable/auto_work" />
 
                 <TextView
+                    android:id="@+id/help_text3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:padding="8dip"
+                    android:layout_gravity="center_vertical"
                     android:text="@string/help_text_section3" />
             </LinearLayout>
 
             <View
                 android:layout_width="fill_parent"
-                android:layout_height="2dip"
+                android:layout_height="2dp"
                 android:background="#FF909090" />
 
             <LinearLayout
@@ -138,31 +132,30 @@
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
-                <Button
+                <ImageButton
                     android:id="@+id/help_button4"
-                    style="@style/HelpButton.Dark"
-                    android:layout_width="180dip"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:drawableBottom="@drawable/help_image4"
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    android:contentDescription="@string/help_title_section4"
                     android:onClick="onClickHelp"
-                    android:text="@string/help_title_section4" />
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_launcher" />
 
                 <TextView
+                    android:id="@+id/help_text4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:padding="8dip"
+                    android:layout_gravity="center_vertical"
                     android:text="@string/help_text_section4" />
             </LinearLayout>
 
             <View
                 android:layout_width="fill_parent"
-                android:layout_height="2dip"
+                android:layout_height="2dp"
                 android:background="#FF909090" />
 
-
         </LinearLayout>
+
     </ScrollView>
 
 </LinearLayout>

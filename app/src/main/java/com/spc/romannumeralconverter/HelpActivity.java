@@ -33,6 +33,7 @@ import android.widget.Toast;
 public class HelpActivity extends Activity {
 
     static public final String ARG_TEXT_ID = "text_id";
+    private static final String TAG = "Help";
 
     /**
      * onCreate - called when the activity is first created.
@@ -48,11 +49,55 @@ public class HelpActivity extends Activity {
         setContentView(R.layout.help);
 
         // Set up so that formatted text can be in the help_page_intro text and so that html links are handled.
-        TextView textView = (TextView) findViewById(R.id.help_page_intro);
-        if (textView != null) {
-            textView.setMovementMethod(LinkMovementMethod.getInstance());
-            textView.setText(Html.fromHtml(getString(R.string.help_page_intro_html)));
+        String help_page_intro = getResources().getString(R.string.help_page_intro);
+        if (help_page_intro.contains("<")) {
+            TextView help_text_intro = (TextView) findViewById(R.id.help_page_intro);
+            if (help_text_intro != null) {
+                help_text_intro.setMovementMethod(LinkMovementMethod.getInstance());
+                help_text_intro.setText(Html.fromHtml(getString(R.string.help_page_intro)));
+            }
         }
+
+        // If the section text contains "<" ie HTML then inject as HTML
+        String help_text_section1 = getResources().getString(R.string.help_text_section1);
+        if (help_text_section1.contains("<")) {
+            TextView helpText1 = (TextView) findViewById(R.id.help_text1);
+            if (helpText1 != null) {
+                helpText1.setMovementMethod(LinkMovementMethod.getInstance());
+                helpText1.setText(Html.fromHtml(getString(R.string.help_text_section1)));
+            }
+        }
+
+        // If the section text contains "CDATA" ie HTML then inject as HTML
+        String help_text_section2 = getResources().getString(R.string.help_text_section2);
+        if (help_text_section2.contains("<")) {
+            TextView helpText2 = (TextView) findViewById(R.id.help_text2);
+            if (helpText2 != null) {
+                helpText2.setMovementMethod(LinkMovementMethod.getInstance());
+                helpText2.setText(Html.fromHtml(getString(R.string.help_text_section2)));
+            }
+        }
+
+        // If the section text contains "CDATA" ie HTML then inject as HTML
+        String help_text_section3 = getResources().getString(R.string.help_text_section3);
+        if (help_text_section3.contains("<")) {
+            TextView helpText3 = (TextView) findViewById(R.id.help_text3);
+            if (helpText3 != null) {
+                helpText3.setMovementMethod(LinkMovementMethod.getInstance());
+                helpText3.setText(Html.fromHtml(getString(R.string.help_text_section3)));
+            }
+        }
+
+        // If the section text contains "CDATA" ie HTML then inject as HTML
+        String help_text_section4 = getResources().getString(R.string.help_text_section4);
+        if (help_text_section4.contains("<")) {
+            TextView helpText4 = (TextView) findViewById(R.id.help_text4);
+            if (helpText4 != null) {
+                helpText4.setMovementMethod(LinkMovementMethod.getInstance());
+                helpText4.setText(Html.fromHtml(getString(R.string.help_text_section4)));
+            }
+        }
+
     }
 
 
@@ -60,13 +105,13 @@ public class HelpActivity extends Activity {
  */
 // Methods
 
-    /**
-     * Handle the click of one of the help buttons on the page.
-     * Start an activity to display the help text for the topic selected.
-     *
-     * @param v View
-     * @return void
-     */
+//    /**
+//     * Handle the click of one of the help buttons on the page.
+//     * Start an activity to display the help text for the topic selected.
+//     *
+//     * @param v View
+//     * @return void
+//     */
 
     public void onClickHelp(View v) {
         int id = v.getId();
@@ -92,12 +137,12 @@ public class HelpActivity extends Activity {
         else toast("Detailed Help for that topic is not available.", true);
     }
 
-    /**
-     * Start a TopicActivity and show the text indicated by argument 1.
-     *
-     * @param textId int - resource id of the text to show
-     * @return void
-     */
+//    /**
+//     * Start a TopicActivity and show the text indicated by argument 1.
+//     *
+//     * @param textId int - resource id of the text to show
+//     * @return void
+//     */
 
     public void startInfoActivity(int textId) {
         if (textId >= 0) {
@@ -109,13 +154,13 @@ public class HelpActivity extends Activity {
         }
     } // end startInfoActivity
 
-    /**
-     * Show a string on the screen via Toast.
-     *
-     * @param msg        String
-     * @param longLength boolean - show message a long time
-     * @return void
-     */
+//    /**
+//     * Show a string on the screen via Toast.
+//     *
+//     * @param msg        String
+//     * @param longLength boolean - show message a long time
+//     * @return void
+//     */
 
     public void toast(String msg, boolean longLength) {
         Toast.makeText(getApplicationContext(), msg,
