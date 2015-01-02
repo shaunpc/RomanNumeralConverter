@@ -2,7 +2,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
@@ -38,6 +37,7 @@
         android:layout_toStartOf="@id/colonRN"
         android:gravity="end|center_vertical"
         android:minLines="2"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
         android:text="@string/RN_text"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
@@ -50,6 +50,7 @@
         android:layout_toStartOf="@id/editTextRNInput"
         android:gravity="center"
         android:minLines="2"
+        android:padding="3dp"
         android:text="@string/colon"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
@@ -65,6 +66,7 @@
         android:imeOptions="actionDone"
         android:inputType="text|textCapCharacters|textNoSuggestions"
         android:minLines="2"
+        android:minWidth="120dp"
         android:textColor="@color/cactusGreenColor" />
 
     <TextView
@@ -78,6 +80,7 @@
         android:layout_toRightOf="@id/colonAI"
         android:gravity="start|center_vertical"
         android:minLines="2"
+        android:paddingRight="@dimen/activity_horizontal_margin"
         android:text="@string/AI_text"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
@@ -93,6 +96,7 @@
         android:imeOptions="actionDone"
         android:inputType="number"
         android:minLines="2"
+        android:minWidth="120dp"
         android:textColor="@color/cactusGreenColor" />
 
     <TextView
@@ -104,6 +108,7 @@
         android:layout_toRightOf="@id/editTextAIInput"
         android:gravity="center"
         android:minLines="2"
+        android:padding="3dp"
         android:text="@string/colon"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
