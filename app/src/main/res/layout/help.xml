@@ -19,6 +19,12 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
+    <fragment
+        android:id="@+id/adFragment_help"
+        android:name="com.spc.romannumeralconverter.AdFragment"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
     <TextView
         android:id="@+id/help_page_intro"
         android:layout_width="fill_parent"
@@ -157,5 +163,6 @@
         </LinearLayout>
 
     </ScrollView>
+
 
 </LinearLayout>

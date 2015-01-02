@@ -21,6 +21,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -47,6 +48,8 @@ public class HelpActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.help);
+
+        Log.v(TAG, "Creating HELP screens");
 
         // Set up so that formatted text can be in the help_page_intro text and so that html links are handled.
         String help_page_intro = getResources().getString(R.string.help_page_intro);
@@ -101,8 +104,8 @@ public class HelpActivity extends Activity {
     }
 
 
-/**
- */
+    /**
+     */
 // Methods
 
 //    /**
@@ -112,7 +115,6 @@ public class HelpActivity extends Activity {
 //     * @param v View
 //     * @return void
 //     */
-
     public void onClickHelp(View v) {
         int id = v.getId();
         int textId = -1;

@@ -19,6 +19,27 @@
     android:background="@color/light_background"
     android:orientation="vertical">
 
+    <fragment
+        android:id="@+id/adFragment_topic"
+        android:name="com.spc.romannumeralconverter.AdFragment"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+    <TextView
+        android:id="@+id/help_page_intro"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/RNC_title"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="@dimen/text_size_medium"
+        android:textStyle="bold" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:background="#FF909090" />
+
     <ScrollView
         android:id="@+id/ScrollView01"
         android:layout_width="fill_parent"
@@ -31,4 +52,6 @@
             android:padding="6dip"
             android:text="@string/about_help_topics" />
     </ScrollView>
+
+
 </LinearLayout>

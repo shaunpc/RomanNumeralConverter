@@ -21,6 +21,10 @@
     <string name="buttonSubtract">-</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    // TODO - change this to be my app AdMobID
+    // This is the AdMob test ID ---
+    <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
 
 </resources>
