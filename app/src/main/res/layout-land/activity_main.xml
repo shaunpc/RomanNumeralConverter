@@ -2,8 +2,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity">
 
@@ -139,8 +137,8 @@
 
     <Button
         android:id="@+id/buttonAdd"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_below="@id/textViewStatus"
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
@@ -157,7 +155,7 @@
     <Button
         android:id="@+id/buttonAuto"
         android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_height="70dp"
         android:layout_below="@id/textViewStatus"
         android:layout_centerHorizontal="true"
         android:contentDescription="@string/buttonAuto"
@@ -168,8 +166,8 @@
 
     <Button
         android:id="@+id/buttonSubtract"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_below="@id/textViewStatus"
         android:layout_marginLeft="10dp"
         android:layout_marginStart="10dp"
@@ -182,5 +180,12 @@
         android:textSize="@dimen/abc_text_size_headline_material"
         android:textStyle="bold"
         android:visibility="gone" />
+
+    <fragment
+        android:id="@+id/adFragment_main"
+        android:name="com.spc.romannumeralconverter.AdFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" />
 
 </RelativeLayout>

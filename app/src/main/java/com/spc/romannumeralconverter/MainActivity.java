@@ -1,7 +1,6 @@
 package com.spc.romannumeralconverter;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -16,6 +15,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+// import android.content.SharedPreferences;
+
 
 // ROMAN NUMERAL CONVERTER
 // MainActivity handles the user interfacing of the app
@@ -25,13 +26,18 @@ import android.widget.TextView;
 
 public class MainActivity extends ActionBarActivity {
 
-    // Key variables - pulled from the Preferences file if present, but we default here anyway
-    public static final String PREFS_NAME = "MyPrefsFile";
+    // Store key variables in the onSaveInstanceState call (cleaner than PrefsFile)
+    static final String STATE_AUTOMODE = "autoMode";
+    static final String STATE_AUTOCOUNTUP = "autoCountUp";
+    static final String STATE_COUNTER = "counter";
     private static final String TAG = "RNC";
+    // Key variables - pulled from the Preferences file if present, but we default here anyway
+    // public static final String PREFS_NAME = "MyPrefsFile";
     public Boolean rnAutoMode = false;     // Which mode are we operating in
     public Boolean rnAutoCountUp = true;   // Does auto-mode count up or down
     public Boolean rnTimerRunning = false; // Is the timer running...
     // Screen Objects
+    View adFragment; //The main screen advert view, need to turn on/off depending on mode
     EditText rnEditRN;  // The editable Roman Numeral field
     EditText rnEditAI;  // The editable Arabic Integer field
     TextView rnStatus;  // Status indicator, but also reset and mode switch button
@@ -47,14 +53,6 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Restore preferences, with defaults if not found
-        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-        rnAutoMode = settings.getBoolean("AutoMode", false);
-        rnAutoCountUp = settings.getBoolean("AutoCountUp", true);
-        rnCounter = settings.getInt("Counter", 0);
-        Log.v(TAG, "... onCreate:AutoMode=" + rnAutoMode + ";AutoCountUp=" + rnAutoCountUp + ";Counter=" + rnCounter);
-
-
         setContentView(R.layout.activity_main);
 
         // find the relevant screen components
@@ -66,6 +64,7 @@ public class MainActivity extends ActionBarActivity {
         rnAutoAdd = (Button) findViewById(R.id.buttonAdd);
         rnAutoSub = (Button) findViewById(R.id.buttonSubtract);
 
+        adFragment = findViewById(R.id.adFragment_main);
 
         // create the LongClickListener on status to switch mode
         rnStatus.setOnLongClickListener(new View.OnLongClickListener() {
@@ -202,11 +201,9 @@ public class MainActivity extends ActionBarActivity {
         };
         Log.v(TAG, "... created rnTimer " + rnTimer + "... rnTimerRunning=" + rnTimerRunning);
 
-        // if starting in AUTO mode from previous session then switch to it...
-        if (rnAutoMode) {
-            rnAutoMode = false;   // bit of hack to turn it to manual, then switch...
-            switchMode();
-        }
+        // In manual mode, so don't yet display it
+        adFragment.setVisibility(View.GONE);
+
         // display the last known number
         if (rnCounter > 0) setRN(rnCounter);
 
@@ -216,19 +213,57 @@ public class MainActivity extends ActionBarActivity {
     protected void onStop() {
         super.onStop();
 
-        Log.v(TAG, "... onSTOP:AutoMode=" + rnAutoMode + ";AutoCountUp=" + rnAutoCountUp + ";Counter=" + rnCounter);
-        // We need an Editor object to make preference changes.
-        // All objects are from android.context.Context
-        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-        SharedPreferences.Editor editor = settings.edit();
-        editor.putBoolean("AutoMode", rnAutoMode);
-        editor.putBoolean("AutoCountUp", rnAutoCountUp);
-        editor.putInt("Counter", rnCounter);
+        // Last check to cancel timer if running
+        cancelTimerIfRunning();
 
-        // Commit the edits!  Actually use 'apply' to request async write
-        editor.apply();
+//        No longer need to save status here, as moved to onSaveInstanceState
+//        Log.v(TAG, "... onSTOP:AutoMode=" + rnAutoMode + ";AutoCountUp=" + rnAutoCountUp + ";Counter=" + rnCounter);
+//        // We need an Editor object to make preference changes.
+//        // All objects are from android.context.Context
+//        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+//        SharedPreferences.Editor editor = settings.edit();
+//        editor.putBoolean("AutoMode", rnAutoMode);
+//        editor.putBoolean("AutoCountUp", rnAutoCountUp);
+//        editor.putInt("Counter", rnCounter);
+//
+//        // Commit the edits!  Actually use 'apply' to request async write
+//        editor.apply();
     }
 
+
+    // Rely on system calling onSaveInstanceState when stopping to save the key variables
+    // alongside the other 'bundle' instance state.
+    // Then as system calls onRestoreInstanceState() only if there is a saved state to restore
+    // (eg if changing screen orientation) then we pull the variables back from the bundle
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        // Save the current converter state
+        savedInstanceState.putBoolean(STATE_AUTOMODE, rnAutoMode);
+        savedInstanceState.putBoolean(STATE_AUTOCOUNTUP, rnAutoCountUp);
+        savedInstanceState.putInt(STATE_COUNTER, rnCounter);
+        Log.v(TAG, "onSaveInstanceState:AutoMode=" + rnAutoMode + ";AutoCountUp=" + rnAutoCountUp + ";Counter=" + rnCounter);
+
+        // Always call the superclass so it can save the view hierarchy state
+        super.onSaveInstanceState(savedInstanceState);
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        // Always call the superclass so it can restore the view hierarchy
+        super.onRestoreInstanceState(savedInstanceState);
+
+        // Restore state members from saved instance
+        rnAutoMode = savedInstanceState.getBoolean(STATE_AUTOMODE, false);
+        rnAutoCountUp = savedInstanceState.getBoolean(STATE_AUTOCOUNTUP, true);
+        rnCounter = savedInstanceState.getInt(STATE_COUNTER, 0);
+        Log.v(TAG, "onRestoreInstanceState:AutoMode=" + rnAutoMode + ";AutoCountUp=" + rnAutoCountUp + ";Counter=" + rnCounter);
+
+        // if starting in AUTO mode from previous session then switch to it...
+        if (rnAutoMode) {
+            rnAutoMode = false;   // bit of hack to turn it to manual, then switch...
+            switchMode();
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -302,6 +337,8 @@ public class MainActivity extends ActionBarActivity {
             cancelTimerIfRunning();
             rnEditRN.setTextColor(getResources().getColor(R.color.cactusGreenColor));
             rnEditAI.setTextColor(getResources().getColor(R.color.cactusGreenColor));
+            adFragment.setVisibility(View.GONE);    // remove the advert
+
         } else {
             // Currently in MANUAL, switch to AUTO
             rnAutoMode = true;
@@ -320,6 +357,7 @@ public class MainActivity extends ActionBarActivity {
             } else {
                 rnAuto.setText(R.string.buttonAutoDown);
             }
+            adFragment.setVisibility(View.VISIBLE);   // make advert visible
         }
     }
 
