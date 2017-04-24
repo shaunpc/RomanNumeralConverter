@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -24,7 +24,7 @@ import android.widget.TextView;
 //
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends AppCompatActivity {
 
     // Store key variables in the onSaveInstanceState call (cleaner than PrefsFile)
     static final String STATE_AUTOMODE = "autoMode";
@@ -83,7 +83,7 @@ public class MainActivity extends ActionBarActivity {
                 Log.v(TAG, "... inside the onLongClick for AUTO-COUNT...");
                 rnAutoCountUp = !rnAutoCountUp;
                 cancelTimerIfRunning();
-                rnErrMsg.setText("Automatic count direction changed");
+                rnErrMsg.setText(getString(R.string.directionchange));
                 return true; // ensures that the normal onClickListener doesn't fire
             }
         });
@@ -124,14 +124,14 @@ public class MainActivity extends ActionBarActivity {
                     try {
                         Log.v(TAG, "... setting up to convert : " + convertRNString);
                         RomanNumeral N = new RomanNumeral(convertRNString);
-                        rnEditAI.setText("" + N.toInt());
-                        rnStatus.setText("DONE");
-                        rnErrMsg.setText("");
+                        rnEditAI.setText(getString(R.string.blank_for_int, N.toInt()));
+                        rnStatus.setText(getString(R.string.done));
+                        rnErrMsg.setText(getString(R.string.blank));
                         // set the counter to the latest, so that change to AUTO would start there
                         rnCounter = N.toInt();
                     } catch (NumberFormatException e) {
                         Log.v(TAG, "...Conversion Failed: " + e.getMessage());
-                        rnStatus.setText("FAILED!");
+                        rnStatus.setText(getString(R.string.failed));
                         rnErrMsg.setText(e.getMessage());
                     }
                 }
@@ -155,21 +155,21 @@ public class MainActivity extends ActionBarActivity {
                         convertAIint = Integer.parseInt(v.getText().toString());
                     } catch (NumberFormatException e) {
                         Log.v(TAG, "...Arabic Integer parse failed: " + e.getMessage());
-                        rnStatus.setText("FAILED!");
-                        rnErrMsg.setText("parse value not valid: " + e.getMessage());
+                        rnStatus.setText(getString(R.string.failed));
+                        rnErrMsg.setText(e.getMessage());
                     }
 
                     try {
                         Log.v(TAG, "... setting up to convert  : " + convertAIint);
                         RomanNumeral N = new RomanNumeral(convertAIint);
                         rnEditRN.setText(N.toString());
-                        rnStatus.setText("DONE");
-                        rnErrMsg.setText("");
+                        rnStatus.setText(getString(R.string.done));
+                        rnErrMsg.setText(getString(R.string.blank));
                         // set the counter to the latest, so that change to AUTO would start there
                         rnCounter = convertAIint;
                     } catch (NumberFormatException e) {
                         Log.v(TAG, "...Conversion Failed: " + e.getMessage());
-                        rnStatus.setText("FAILED!");
+                        rnStatus.setText(getString(R.string.failed));
                         rnErrMsg.setText(e.getMessage());
                     }
 
@@ -216,18 +216,8 @@ public class MainActivity extends ActionBarActivity {
         // Last check to cancel timer if running
         cancelTimerIfRunning();
 
-//        No longer need to save status here, as moved to onSaveInstanceState
-//        Log.v(TAG, "... onSTOP:AutoMode=" + rnAutoMode + ";AutoCountUp=" + rnAutoCountUp + ";Counter=" + rnCounter);
-//        // We need an Editor object to make preference changes.
-//        // All objects are from android.context.Context
-//        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-//        SharedPreferences.Editor editor = settings.edit();
-//        editor.putBoolean("AutoMode", rnAutoMode);
-//        editor.putBoolean("AutoCountUp", rnAutoCountUp);
-//        editor.putInt("Counter", rnCounter);
-//
-//        // Commit the edits!  Actually use 'apply' to request async write
-//        editor.apply();
+
+
     }
 
 
@@ -311,15 +301,15 @@ public class MainActivity extends ActionBarActivity {
         // Basic reset of fields, but needs to take account of AUTO or MANUAL
         if (rnAutoMode) {
             cancelTimerIfRunning();
-            rnErrMsg.setText("AUTO mode - counter reset");
+            rnErrMsg.setText(getString(R.string.autoreset));
             rnAutoCountUp = true;                   // as we will reset then ensure
-            rnAuto.setText(R.string.buttonAutoUp);  // count UP is defaulted
+            rnAuto.setText(getString(R.string.buttonAutoUp));  // count UP is defaulted
         } else {
-            rnStatus.setText(R.string.RN_status);  //READY
-            rnErrMsg.setText("Manual mode - input fields reset");
+            rnStatus.setText(getString(R.string.RN_status));  //READY
+            rnErrMsg.setText(getString(R.string.manualreset));
         }
-        rnEditAI.setText("");  // Setting empty string should make hint visible?
-        rnEditRN.setText("");  // Setting empty string should make hint visible?
+        rnEditAI.setText(getString(R.string.blank));;  // Setting empty string should make hint visible?
+        rnEditRN.setText(getString(R.string.blank));;  // Setting empty string should make hint visible?
         rnCounter = 0;
     }
 
@@ -327,8 +317,8 @@ public class MainActivity extends ActionBarActivity {
         if (rnAutoMode) {
             // Currently in AUTO, switch to MANUAL
             rnAutoMode = false;
-            rnStatus.setText(R.string.RN_status);
-            rnErrMsg.setText("Mode switched to Manual");
+            rnStatus.setText(getString(R.string.RN_status));
+            rnErrMsg.setText(getString(R.string.switchmanual));
             rnAutoAdd.setVisibility(View.GONE);
             rnAutoSub.setVisibility(View.GONE);
             rnAuto.setVisibility(View.GONE);
@@ -342,8 +332,8 @@ public class MainActivity extends ActionBarActivity {
         } else {
             // Currently in MANUAL, switch to AUTO
             rnAutoMode = true;
-            rnStatus.setText("AUTO");
-            rnErrMsg.setText("Mode switched to AUTO");
+            rnStatus.setText(getString(R.string.auto));
+            rnErrMsg.setText(getString(R.string.switchauto));
             rnAutoAdd.setVisibility(View.VISIBLE);
             rnAutoSub.setVisibility(View.VISIBLE);
             rnAuto.setVisibility(View.VISIBLE);
@@ -353,9 +343,9 @@ public class MainActivity extends ActionBarActivity {
             rnEditAI.setTextColor(Color.BLUE);
             // if in AUTO mode, set the AUTO button text to either UP or DOWN
             if (rnAutoCountUp) {
-                rnAuto.setText(R.string.buttonAutoUp);
+                rnAuto.setText(getString(R.string.buttonAutoUp));
             } else {
-                rnAuto.setText(R.string.buttonAutoDown);
+                rnAuto.setText(getString(R.string.buttonAutoDown));
             }
             adFragment.setVisibility(View.VISIBLE);   // make advert visible
         }
@@ -369,7 +359,7 @@ public class MainActivity extends ActionBarActivity {
         if (!rnTimerRunning) {
             Log.v(TAG, "...inside counterAuto - starting timer");
             rnTimer.start();
-            rnAuto.setText(R.string.buttonAutoStop);
+            rnAuto.setText(getString(R.string.buttonAutoStop));
             rnTimerRunning = true;
         } else {
             Log.v(TAG, "...inside counterAuto - stopping timer");
@@ -394,8 +384,8 @@ public class MainActivity extends ActionBarActivity {
         }
 
         // if in AUTO mode, set the AUTO button text to either UP or DOWN
-        if (rnAutoMode && rnAutoCountUp) rnAuto.setText(R.string.buttonAutoUp);
-        if (rnAutoMode && !rnAutoCountUp) rnAuto.setText(R.string.buttonAutoDown);
+        if (rnAutoMode && rnAutoCountUp) rnAuto.setText(getString(R.string.buttonAutoUp));
+        if (rnAutoMode && !rnAutoCountUp) rnAuto.setText(getString(R.string.buttonAutoDown));
 
         Log.v(TAG, "...Leaving cancelTimerIfRunning; rnTimerRunning= " + rnTimerRunning + "; rnTimer=" + rnTimer);
 
@@ -425,14 +415,14 @@ public class MainActivity extends ActionBarActivity {
             Log.v(TAG, "... setting up to convert  : " + convertAIint);
             RomanNumeral N = new RomanNumeral(convertAIint);
             rnEditRN.setText(N.toString());
-            rnEditAI.setText("" + N.toInt());
-            rnStatus.setText("AUTO");
-            rnErrMsg.setText("");
+            rnEditAI.setText(getString(R.string.blank_for_int, N.toInt()));
+            rnStatus.setText(getString(R.string.auto));
+            rnErrMsg.setText(getString(R.string.blank));
         } catch (NumberFormatException e) {
             Log.v(TAG, "...Conversion Failed: " + e.getMessage());
-            rnEditAI.setText("" + convertAIint);
-            rnEditRN.setText("");
-            rnStatus.setText("FAILED!");
+            rnEditAI.setText(getString(R.string.blank_for_int, convertAIint));
+            rnEditRN.setText(getString(R.string.blank));
+            rnStatus.setText(getString(R.string.failed));
             rnErrMsg.setText(e.getMessage());
             // If the counter is running on AUTO, then cancel it if error
             cancelTimerIfRunning();

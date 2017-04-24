@@ -26,5 +26,15 @@
     // TODO - change this to be my app AdMobID
     // This is the AdMob test ID ---
     <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="directionchange">Automatic count direction changed</string>
+    <string name="done">DONE</string>
+    <string name="failed">FAILED!</string>
+    <string name="autoreset">AUTO mode - counter reset</string>
+    <string name="manualreset">Manual mode - input fields reset</string>
+    <string name="switchmanual">Mode switched to Manual</string>
+    <string name="switchauto">Mode switched to AUTO</string>
+    <string name="auto">AUTO</string>
+    <string name="blank_for_int">%d</string>
+    <string name="blank"></string>
 
 </resources>

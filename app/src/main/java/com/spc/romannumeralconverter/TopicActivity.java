@@ -20,6 +20,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
+import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
 import android.widget.TextView;
 
@@ -50,7 +51,15 @@ public class TopicActivity extends Activity {
 
         TextView textView = (TextView) findViewById(R.id.topic_text);
         textView.setMovementMethod(LinkMovementMethod.getInstance());
-        textView.setText(Html.fromHtml(getString(mTextResourceId)));
+        textView.setText(getSpannedHtml(getString(mTextResourceId)));
+    }
+
+    private Spanned getSpannedHtml(String string) {
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            return Html.fromHtml(string, Html.FROM_HTML_MODE_LEGACY);
+        } else {
+            return Html.fromHtml(string);
+        }
     }
 
 } // end class

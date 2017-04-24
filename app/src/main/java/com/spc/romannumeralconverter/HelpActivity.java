@@ -20,6 +20,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
+import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.View;
@@ -57,7 +58,7 @@ public class HelpActivity extends Activity {
             TextView help_text_intro = (TextView) findViewById(R.id.help_page_intro);
             if (help_text_intro != null) {
                 help_text_intro.setMovementMethod(LinkMovementMethod.getInstance());
-                help_text_intro.setText(Html.fromHtml(getString(R.string.help_page_intro)));
+                help_text_intro.setText(getSpannedHtml(getString(R.string.help_page_intro)));
             }
         }
 
@@ -67,7 +68,7 @@ public class HelpActivity extends Activity {
             TextView helpText1 = (TextView) findViewById(R.id.help_text1);
             if (helpText1 != null) {
                 helpText1.setMovementMethod(LinkMovementMethod.getInstance());
-                helpText1.setText(Html.fromHtml(getString(R.string.help_text_section1)));
+                helpText1.setText(getSpannedHtml(getString(R.string.help_text_section1)));
             }
         }
 
@@ -77,7 +78,7 @@ public class HelpActivity extends Activity {
             TextView helpText2 = (TextView) findViewById(R.id.help_text2);
             if (helpText2 != null) {
                 helpText2.setMovementMethod(LinkMovementMethod.getInstance());
-                helpText2.setText(Html.fromHtml(getString(R.string.help_text_section2)));
+                helpText2.setText(getSpannedHtml(getString(R.string.help_text_section2)));
             }
         }
 
@@ -87,7 +88,7 @@ public class HelpActivity extends Activity {
             TextView helpText3 = (TextView) findViewById(R.id.help_text3);
             if (helpText3 != null) {
                 helpText3.setMovementMethod(LinkMovementMethod.getInstance());
-                helpText3.setText(Html.fromHtml(getString(R.string.help_text_section3)));
+                helpText3.setText(getSpannedHtml(getString(R.string.help_text_section3)));
             }
         }
 
@@ -97,12 +98,19 @@ public class HelpActivity extends Activity {
             TextView helpText4 = (TextView) findViewById(R.id.help_text4);
             if (helpText4 != null) {
                 helpText4.setMovementMethod(LinkMovementMethod.getInstance());
-                helpText4.setText(Html.fromHtml(getString(R.string.help_text_section4)));
+                helpText4.setText(getSpannedHtml(getString(R.string.help_text_section4)));
             }
         }
 
     }
 
+    private Spanned getSpannedHtml(String string) {
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            return Html.fromHtml(string, Html.FROM_HTML_MODE_LEGACY);
+        } else {
+            return Html.fromHtml(string);
+        }
+    }
 
     /**
      */
