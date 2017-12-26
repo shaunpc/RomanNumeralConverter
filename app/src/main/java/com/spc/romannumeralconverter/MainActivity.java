@@ -56,14 +56,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // find the relevant screen components
-        rnEditRN = (EditText) findViewById(R.id.editTextRNInput);
-        rnEditAI = (EditText) findViewById(R.id.editTextAIInput);
-        rnStatus = (TextView) findViewById(R.id.textViewStatus);
-        rnErrMsg = (TextView) findViewById(R.id.textViewErrMsg);
-        rnAuto = (Button) findViewById(R.id.buttonAuto);
-        rnAutoAdd = (Button) findViewById(R.id.buttonAdd);
-        rnAutoSub = (Button) findViewById(R.id.buttonSubtract);
-
+        rnEditRN = findViewById(R.id.editTextRNInput);
+        rnEditAI = findViewById(R.id.editTextAIInput);
+        rnStatus = findViewById(R.id.textViewStatus);
+        rnErrMsg = findViewById(R.id.textViewErrMsg);
+        rnAuto = findViewById(R.id.buttonAuto);
+        rnAutoAdd = findViewById(R.id.buttonAdd);
+        rnAutoSub = findViewById(R.id.buttonSubtract);
         adFragment = findViewById(R.id.adFragment_main);
 
         // create the LongClickListener on status to switch mode
@@ -201,7 +200,10 @@ public class MainActivity extends AppCompatActivity {
         };
         Log.v(TAG, "... created rnTimer " + rnTimer + "... rnTimerRunning=" + rnTimerRunning);
 
-        // In manual mode, so don't yet display it
+        // In manual mode, so don't yet display any clever stuff
+        rnAutoAdd.setVisibility(View.GONE);
+        rnAutoSub.setVisibility(View.GONE);
+        rnAuto.setVisibility(View.GONE);
         adFragment.setVisibility(View.GONE);
 
         // display the last known number
@@ -308,8 +310,8 @@ public class MainActivity extends AppCompatActivity {
             rnStatus.setText(getString(R.string.RN_status));  //READY
             rnErrMsg.setText(getString(R.string.manualreset));
         }
-        rnEditAI.setText(getString(R.string.blank));;  // Setting empty string should make hint visible?
-        rnEditRN.setText(getString(R.string.blank));;  // Setting empty string should make hint visible?
+        rnEditAI.setText(getString(R.string.blank));  // Setting empty string should make hint visible?
+        rnEditRN.setText(getString(R.string.blank));  // Setting empty string should make hint visible?
         rnCounter = 0;
     }
 

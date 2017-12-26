@@ -14,10 +14,10 @@
     <string name="RN_errmsg">.</string>
     <string name="colon"> : </string>
     <string name="buttonAdd">+</string>
-    <string name="buttonAuto">COUNTER</string>
-    <string name="buttonAutoUp">COUNT UP</string>
+    <string name="buttonAuto">  COUNTER </string>
+    <string name="buttonAutoUp"> COUNT UP </string>
     <string name="buttonAutoDown">COUNT DOWN</string>
-    <string name="buttonAutoStop">STOP</string>
+    <string name="buttonAutoStop">   STOP   </string>
     <string name="buttonSubtract">-</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>

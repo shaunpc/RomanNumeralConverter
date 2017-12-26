@@ -1,9 +1,11 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    tools:layout_editor_absoluteY="81dp">
 
     <TextView
         android:id="@+id/textViewTitle"
@@ -11,180 +13,174 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:ellipsize="middle"
         android:gravity="center"
         android:text="@string/RNC_title"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@android:color/holo_red_dark"
-        android:textSize="@dimen/abc_text_size_display_2_material" />
-
-    <TextView
-        android:id="@+id/centerPlaceholder"
-        android:layout_width="@dimen/abc_text_size_title_material"
-        android:layout_height="@dimen/abc_text_size_title_material"
-        android:layout_centerInParent="true" />
-
-    <TextView
-        android:id="@+id/colonRN"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/centerPlaceholder"
-        android:layout_toLeftOf="@id/centerPlaceholder"
-        android:layout_toStartOf="@id/centerPlaceholder"
-        android:gravity="center"
-        android:minLines="2"
-        android:padding="3dp"
-        android:text="@string/colon"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textViewRN"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/centerPlaceholder"
-        android:layout_toLeftOf="@id/colonRN"
-        android:layout_toStartOf="@id/colonRN"
         android:gravity="end|center_vertical"
-        android:minLines="2"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:singleLine="true"
         android:text="@string/RN_text"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        app:layout_constraintBaseline_toBaselineOf="@+id/colonRN"
+        app:layout_constraintEnd_toStartOf="@+id/colonRN"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/colonRN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="@string/colon"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        app:layout_constraintEnd_toStartOf="@+id/editTextRNInput"
+        app:layout_constraintStart_toEndOf="@+id/textViewRN"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTitle" />
 
     <EditText
         android:id="@+id/editTextRNInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/centerPlaceholder"
-        android:layout_toEndOf="@id/centerPlaceholder"
-        android:layout_toRightOf="@id/centerPlaceholder"
         android:gravity="start|center_vertical"
         android:hint="@string/RN_input"
         android:imeOptions="actionDone"
         android:inputType="text|textCapCharacters|textNoSuggestions"
-        android:minLines="2"
         android:minWidth="120dp"
-        android:textColor="@color/cactusGreenColor" />
-
-    <TextView
-        android:id="@+id/colonAI"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/centerPlaceholder"
-        android:layout_toLeftOf="@id/centerPlaceholder"
-        android:layout_toStartOf="@id/centerPlaceholder"
-        android:gravity="center"
-        android:minLines="2"
-        android:padding="3dp"
-        android:text="@string/colon"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/cactusGreenColor"
+        app:layout_constraintStart_toEndOf="@+id/colonRN"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBaseline_toBaselineOf="@+id/colonRN" />
 
     <TextView
         android:id="@+id/textViewAI"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/centerPlaceholder"
-        android:layout_toLeftOf="@id/colonAI"
-        android:layout_toStartOf="@id/colonAI"
-        android:gravity="end|center_vertical"
-        android:minLines="2"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:gravity="center_vertical|end"
+        android:singleLine="true"
         android:text="@string/AI_text"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        app:layout_constraintBaseline_toBaselineOf="@+id/colonAI"
+        app:layout_constraintEnd_toStartOf="@+id/colonAI"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/colonAI"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="@string/colon"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        app:layout_constraintEnd_toStartOf="@+id/editTextAIInput"
+        app:layout_constraintStart_toEndOf="@+id/textViewAI"
+        app:layout_constraintTop_toBottomOf="@+id/colonRN" />
 
     <EditText
         android:id="@+id/editTextAIInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/centerPlaceholder"
-        android:layout_toEndOf="@id/centerPlaceholder"
-        android:layout_toRightOf="@id/centerPlaceholder"
         android:gravity="start|center_vertical"
         android:hint="@string/AI_input"
         android:imeOptions="actionDone"
         android:inputType="number"
-        android:minLines="2"
         android:minWidth="120dp"
-        android:nestedScrollingEnabled="false"
-        android:textColor="@color/cactusGreenColor" />
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/cactusGreenColor"
+        app:layout_constraintStart_toEndOf="@+id/colonAI"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBaseline_toBaselineOf="@+id/colonAI" />
 
     <TextView
         android:id="@+id/textViewStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/textViewAI"
-        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
         android:clickable="true"
-        android:gravity="end|center_vertical"
+        android:focusable="true"
+        android:gravity="center"
         android:longClickable="true"
         android:onClick="onStatusClick"
         android:text="@string/RN_status"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@android:color/holo_blue_dark" />
-
-    <Button
-        android:id="@+id/buttonAuto"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_below="@id/textViewStatus"
-        android:layout_centerHorizontal="true"
-        android:contentDescription="@string/buttonAuto"
-        android:onClick="counterAuto"
-        android:text="@string/buttonAutoUp"
-        android:textSize="@dimen/abc_text_size_small_material"
-        android:visibility="gone" />
-
+        android:textColor="@android:color/holo_blue_dark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/colonAI" />
 
     <Button
         android:id="@+id/buttonAdd"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_below="@id/textViewStatus"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_toLeftOf="@id/buttonAuto"
-        android:layout_toStartOf="@id/buttonAuto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:contentDescription="@string/buttonAdd"
+        android:gravity="center"
         android:onClick="counterAdd"
         android:text="@string/buttonAdd"
         android:textColor="@android:color/holo_blue_dark"
-        android:textSize="@dimen/abc_text_size_headline_material"
         android:textStyle="bold"
-        android:visibility="gone" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/buttonAuto"
+        app:layout_constraintEnd_toStartOf="@+id/buttonAuto"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent" />
 
+    <Button
+        android:id="@+id/buttonAuto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/buttonAuto"
+        android:gravity="center"
+        android:onClick="counterAuto"
+        android:text="@string/buttonAutoUp"
+        app:layout_constraintEnd_toStartOf="@+id/buttonSubtract"
+        app:layout_constraintStart_toEndOf="@+id/buttonAdd"
+        app:layout_constraintTop_toBottomOf="@+id/textViewStatus" />
 
     <Button
         android:id="@+id/buttonSubtract"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_below="@id/textViewStatus"
-        android:layout_marginLeft="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_toEndOf="@id/buttonAuto"
-        android:layout_toRightOf="@id/buttonAuto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:contentDescription="@string/buttonSubtract"
+        android:gravity="center"
         android:onClick="counterSubtract"
         android:text="@string/buttonSubtract"
         android:textColor="@android:color/holo_blue_dark"
-        android:textSize="@dimen/abc_text_size_headline_material"
         android:textStyle="bold"
-        android:visibility="gone" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/buttonAuto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/buttonAuto" />
 
     <TextView
         android:id="@+id/textViewErrMsg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/buttonAuto"
-        android:layout_centerHorizontal="true"
-        android:gravity="end|center_vertical"
+        android:gravity="center"
         android:text="@string/RN_errmsg"
         android:textColor="@android:color/holo_blue_dark"
-        android:textSize="@dimen/abc_text_size_caption_material" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonAuto" />
 
     <fragment
         android:id="@+id/adFragment_main"
         android:name="com.spc.romannumeralconverter.AdFragment"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>
